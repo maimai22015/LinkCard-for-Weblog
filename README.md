@@ -6,3 +6,6 @@ To use this link card, copy or import the contents of "linkcard.css" into your s
 
 
 *1 A "link card" is a link design that summarizes links to internal and external web sites and blog posts with an easy-to-read title, summary, and eye-catching image.
+
+
+This software was affected by https://link-card-generator.vercel.app/.
