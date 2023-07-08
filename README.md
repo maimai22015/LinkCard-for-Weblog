@@ -9,7 +9,3 @@ To use this link card, copy or import the contents of "linkcard.css" into your s
 
 
 This software was affected by https://link-card-generator.vercel.app/.
-
-TODO
-
-* OGP未定義時の設定忘れてたわｗ
