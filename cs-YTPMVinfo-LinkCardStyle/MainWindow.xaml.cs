@@ -1,4 +1,4 @@
-﻿using HtmlAgilityPack;
+using HtmlAgilityPack;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -62,7 +62,7 @@ namespace OGPInformation
             string ogpImage = GetOgpProperty("og:image");
             string ogpSiteName = GetOgpProperty("og:site_name");
             string ogpUrl = GetOgpProperty("og:url");
-            Uri uri = new Uri(ogpUrl);
+            Uri uri = new Uri(url);
             string host = uri.Host;
 
             // OGP情報を表示
@@ -76,7 +76,7 @@ namespace OGPInformation
         }
         private void GenerateLinkCardButton_Click(object sender, RoutedEventArgs e)
         {
-            string originalHTML = @"
+            string originalHTML1 = @"
 <a class='linkcard_a' href='{A-HREF}' target='_blank' rel='noopener noreferrer'>
     <div class='linkcard_main'>
         <div class='linkcard_text'>
@@ -86,12 +86,15 @@ namespace OGPInformation
         </div>
         <div class='linkcard_host'>{SITE-HOST}</div>
         </div>
-        <div class='linkcard_image'>
-        <img class='linkcard_image' src='{IMAGE-SRC}' alt='' loading='lazy' />
+";
+            String originalHTML2 = @"        <div class='linkcard_image'>
+            <img class='linkcard_image' src='{IMAGE-SRC}' alt='' loading='lazy' />
         </div>
-    </div>
+";
+            string originalHTML3 = @"    </div>
 </a>
 ";
+            string originalHTML = imageLabel.Text != "" ? originalHTML1 + originalHTML2 + originalHTML3 : originalHTML1 + originalHTML3;
             string replacedText = originalHTML.Replace("{A-HREF}", urlTextBox.Text).Replace("{IMAGE-SRC}", imageLabel.Text).Replace("{SITE-HOST}", urlLabel.Text).Replace("{SITE-TITLE}", titleLabel.Text).Replace("{SITE-DESCRIPRION}", descriptionLabel.Text);
             LinkCard.Text = replacedText;
             statuslabel.Content = "Status : [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] Generated Link Card..";
